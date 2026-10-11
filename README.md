@@ -48,7 +48,7 @@ Collect references, mood boards and visual ideas on one endless canvas. TheJ kee
 
 ## Privacy
 
-Everything stays on your device. Online collaboration is optional and end-to-end encrypted. Read the full [privacy policy](PRIVACY.html).
+Everything stays on your device. Online collaboration is optional and end-to-end encrypted. Read the full [privacy policy](https://stronm.github.io/TheJ/PRIVACY.html).
 
 ## Feedback
 
