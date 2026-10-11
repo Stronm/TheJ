@@ -36,7 +36,7 @@ Collect references, mood boards and visual ideas on one endless canvas. TheJ kee
 
 | Platform | Get it |
 |---|---|
-| Windows | [Installer (.exe)](https://github.com/Stronm/TheJ/releases/latest) · [Microsoft Store] (https://apps.microsoft.com/detail/9P40V60LP6GK?hl=en-us&gl=IN&ocid=pdpshare) |
+| Windows | [Installer (.exe)](https://github.com/Stronm/TheJ/releases/latest) · [Microsoft Store](https://apps.microsoft.com/detail/9P40V60LP6GK?hl=en-us&gl=IN&ocid=pdpshare) |
 | Linux (x64) | Portable `.tar.gz` on the [Releases](https://github.com/Stronm/TheJ/releases) page |
 
 ## Quick start
