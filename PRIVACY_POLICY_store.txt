@@ -1,0 +1,45 @@
+TheJ Privacy Policy
+Version 0.5 - Effective 11 October 2026
+Publisher: Saanu John, India - connetthej@gmail.com
+
+SUMMARY
+TheJ is local-first. Your boards and files stay on your computer, and TheJ works fully offline unless you choose an online feature. There are no ads, no analytics or usage tracking, no user accounts, no AI features, and we do not sell personal information.
+
+ON YOUR COMPUTER
+Boards (.thej files), imported files, recovery files, settings, your display name and diagnostic logs are stored locally. A device signing key for online collaboration is kept in Windows Credential Manager. Boards you share online contain a secret board key; anyone with a copy of the file can decrypt that board's session and ask to join. Board files are not encrypted on disk.
+
+ONLINE COLLABORATION (BETA)
+Only when you share a board, join with a code, or agree to join a shared board's live session, TheJ sends board changes, notes, comments, images and files (up to 200 MB each), previews, cursor, selection and view position, locks, your display name and colour, and your role to other session members.
+- Display name: the name you set in TheJ, or your Windows user name if you have not set one.
+- Encryption: this content is end-to-end encrypted with the board key. Our relay cannot read it. Exception: a person joining with a join code sends their display name to the relay in plain text until the host approves them.
+- Relay: our relay runs on Cloudflare Workers/Durable Objects (thej-relay.connetthej.workers.dev). It sees your IP address and connection data, your device ID (public key), the board ID, join codes, members, roles, removed devices, and message sizes and timing.
+- Relay storage: board content is never stored. A room record per shared board (board ID, owner/host/member device IDs and roles, removed devices, a join-token hash and settings) is kept so returning members are recognised; it is not deleted automatically in this version. Join codes expire after 24 hours by default and can be single-use. IP addresses are held in memory only, to rate-limit join-code guessing.
+- Region: a board's room is created in a Cloudflare region near the first person who opens it, chosen from approximate IP location.
+- Direct connections: TheJ tries WebRTC peer-to-peer connections between members, using public STUN servers (stun.cloudflare.com, stun.l.google.com). Other session members can see your IP address. Direct traffic is encrypted; otherwise the relay is used.
+- Members receive the board and may keep copies after the session.
+
+OTHER NETWORK USE
+- Updates: Microsoft Store copies are updated by the Store. The standalone installer build checks GitHub (api.github.com) at start-up and downloads updates from GitHub if you choose.
+- Web links and images you drop or paste are downloaded from their websites; YouTube, Vimeo and Sketchfab are asked for titles and thumbnails. Those sites see your IP address.
+- Links you open (GitHub, Microsoft Store, PayPal) open in your browser under those sites' policies.
+
+DIAGNOSTICS
+Logs, crash reports and memory dumps are saved on your computer (crash files on your Desktop) and are never uploaded by TheJ. Review them before sending them to us. Windows and the Microsoft Store may collect their own diagnostics.
+
+HOW WE USE INFORMATION
+Only to run online sessions (deliver messages, check membership and roles, prevent abuse) and to answer support requests. We may disclose information if required by law. Service providers: Cloudflare, Google (STUN), GitHub, Microsoft Store; they may process data in other countries.
+
+YOUR CHOICES AND RIGHTS
+Stay offline by not sharing or joining. Leave a session or exit TheJ at any time. Delete your local files to remove local data (copies held by other members are not affected). Email us to access or delete relay records about your device or board; we may ask for the board ID or device ID. Depending on where you live, you may have rights to access, correct, delete or object, and to complain to a data-protection authority.
+
+SECURITY
+End-to-end encryption, signed device keys and rate limiting are used, but no system is perfectly secure. Collaboration is in beta; avoid sharing highly sensitive material.
+
+CHILDREN
+TheJ is not directed at children under 13, and we do not knowingly collect their personal information.
+
+CHANGES
+This policy describes TheJ 0.5 and will be updated when features change.
+
+CONTACT
+Saanu John, India - connetthej@gmail.com
