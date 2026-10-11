@@ -29,7 +29,6 @@ Collect references, mood boards and visual ideas on one endless canvas. TheJ kee
 - **Smart snapping.** Edge and centre guides, plus equal-spacing snap.
 - **Notes and comments.** Rich-text notes, comments and video annotations.
 - **Compare.** A/B compare and a hex colour palette from your images.
-- **PureRef import.** Open your `.pur` boards (2.0/2.1).
 - **Local-first.** Boards are single `.thej` files you own.
 - **Live collaboration (beta).** Share a board with a code, end-to-end encrypted.
 
@@ -37,7 +36,7 @@ Collect references, mood boards and visual ideas on one endless canvas. TheJ kee
 
 | Platform | Get it |
 |---|---|
-| Windows | [Installer (.exe)](https://github.com/Stronm/TheJ/releases/latest) · Microsoft Store (coming soon) |
+| Windows | [Installer (.exe)](https://github.com/Stronm/TheJ/releases/latest) · [Microsoft Store] (https://apps.microsoft.com/detail/9P40V60LP6GK?hl=en-us&gl=IN&ocid=pdpshare) |
 | Linux (x64) | Portable `.tar.gz` on the [Releases](https://github.com/Stronm/TheJ/releases) page |
 
 ## Quick start
