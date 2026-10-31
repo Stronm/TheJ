@@ -20,7 +20,7 @@ code{font-size:.92em}
 </head>
 <body>
 <h1>TheJ Privacy Policy</h1>
-<p class="meta">Version 0.5 &middot; Effective 11 October 2026 &middot; Applies to TheJ 0.5 for Windows (Microsoft Store and standalone installer)</p>
+<p class="meta">Version 0.5.8 &middot; Effective 1 November 2026 &middot; Applies to TheJ 0.5.8 for Windows (Microsoft Store and standalone installer)</p>
 <p>TheJ is made by Saanu John, an individual developer in India ("we", "us"). Contact: <a href="mailto:connetthej@gmail.com">connetthej@gmail.com</a>.</p>
 
 <div class="summary">
@@ -28,7 +28,7 @@ code{font-size:.92em}
 <ul>
 <li>TheJ is local-first. Your boards and files stay on your computer. TheJ works fully offline unless you choose an online feature.</li>
 <li>When you share or join a board online (beta), board content is end-to-end encrypted. Our relay server passes it along but cannot read it.</li>
-<li>The relay does see some technical information, such as your IP address, a device ID and who is in a session. It keeps a small record of each shared board's members.</li>
+<li>The relay does see some technical information, such as your IP address, a device ID and who is in a session. It keeps a small record of each shared board's members and, for up to 7 days, encrypted copies of recent changes so people who were away can catch up. It cannot read those copies.</li>
 <li>No ads, no analytics or usage tracking, no selling of data, and no AI features. Crash reports stay on your computer.</li>
 </ul>
 </div>
@@ -52,7 +52,7 @@ code{font-size:.92em}
 <p>Your display name is the name you set in TheJ. If you have not set one, TheJ uses your Windows account user name. Change it before sharing if you do not want others to see it.</p>
 
 <h3>End-to-end encryption</h3>
-<p>The content above is encrypted on your computer with the board key before it is sent. Only people who have the board key can read it. The relay cannot read board content, names in normal sessions, cursors or images.</p>
+<p>The content above is encrypted on your computer with the board key before it is sent. Only people who have the board key can read it. The relay cannot read board content, names in normal sessions, cursors or images, including the encrypted changes it keeps for catch-up (see below).</p>
 <p><strong>Exception:</strong> when someone joins with a join code, their display name is sent to the relay in plain text so the host can see who is asking. After the host approves, the board key is sent to them encrypted, and everything after that is encrypted.</p>
 
 <h3>Our relay server</h3>
@@ -62,13 +62,19 @@ code{font-size:.92em}
 <li>your device ID (your device's public key), the board's random ID, and join codes;</li>
 <li>who is in the session, their roles, who is waiting for approval and who has been removed;</li>
 <li>a code joiner's display name (see above);</li>
+<li>the board's hosting rules, which the owner signs (see the table below);</li>
 <li>message types, sizes and timing, and a short fingerprint (hash) of the board state used to check that copies match.</li>
 </ul>
 <p><strong>What the relay keeps:</strong></p>
 <table>
 <tr><th>Information</th><th>How long</th></tr>
-<tr><td>Board content, images, previews, cursors, messages</td><td>Not stored. Passed through in memory only.</td></tr>
-<tr><td>Room record for each shared board: board ID, owner and current host device IDs, member device IDs and roles, removed (blocked) device IDs, a hash of the join token, room settings and an edit counter</td><td>Kept in Cloudflare Durable Object storage so returning members are recognised. The current version does not delete these records automatically. Ask us to delete them (section 8).</td></tr>
+<tr><td>Live activity: cursors, selections, dragging, full images and files, and messages sent to one person</td><td>Not stored. Passed through in memory only.</td></tr>
+<tr><td><strong>Catch-up mailbox:</strong> encrypted copies of recent board changes, small image previews (up to about 400&nbsp;KB each), the board's hosting rules and its copy history (who the board file was passed from and to). With each one: the sender's device ID, an order number, the time and the size. The relay cannot read the content.</td><td>Kept so members who were away get the changes they missed. Deleted once every member has received it, or after 7 days, whichever comes first. The relay does this on its own, even if nobody opens the board again. Also limited to 5,000 changes or 25&nbsp;MB per board (the oldest go first). You can also ask us to delete them sooner (section 8).</td></tr>
+<tr><td><strong>Receipts:</strong> for each member device, the order number of the last change it confirmed</td><td>Kept with the room record, so the relay knows what can be deleted from the mailbox. Removed when that device is removed from the board.</td></tr>
+<tr><td><strong>Hosting rules</strong> (signed by the owner, readable by the relay): the owner's and co-hosts' device IDs, which frames are protected and the device IDs allowed to edit them, and removed device IDs</td><td>Kept with the room record so the relay can check who may host. Replaced when the owner changes them.</td></tr>
+<tr><td><strong>New-key boxes:</strong> when the board key changes (for example after someone is removed), the new key sealed to each member who was away, plus short fingerprints (hashes) of up to 5 earlier keys</td><td>Kept until that member comes back and receives the new key. Deleted if that member is removed.</td></tr>
+<tr><td><strong>Viewer limits:</strong> for each viewer, when their access ends (at most 30 days) and whether they may keep a copy</td><td>Kept with the room record until the host changes that person's role or removes them.</td></tr>
+<tr><td>Room record for each shared board: board ID, owner and current host device IDs, member device IDs and roles, removed (blocked) device IDs, a hash of the join token, room settings and a change counter</td><td>Kept in Cloudflare Durable Object storage so returning members are recognised. The current version does not delete these records automatically. Ask us to delete them (section 8).</td></tr>
 <tr><td>Join codes (code and board ID)</td><td>A code expires 24 hours after it is created by default and can be made single-use. Making a new code retires the old one. Expired codes are deleted when next looked up or replaced.</td></tr>
 <tr><td>IP addresses for rate limiting</td><td>Held in memory to limit join-code guessing (about 10 tries a minute; repeated misses lock an address for 15 minutes). Not written to storage by our code.</td></tr>
 </table>
@@ -119,7 +125,7 @@ code{font-size:.92em}
 <li><strong>Stay offline:</strong> do not share or join online sessions. Store copies then make no network connections except for web links you add.</li>
 <li><strong>Leave a session</strong> at any time, or exit TheJ to close all connections.</li>
 <li><strong>Delete local data:</strong> delete your <code>.thej</code> files, recovery files and crash files. Uninstalling may not remove everything. Deleting your files does not delete copies other members already have.</li>
-<li><strong>Access or deletion on the relay:</strong> email us to ask what the relay holds about your device or board, or to delete a room record. We may ask for the board ID or device ID (stored on your computer) to find it, because we cannot read board names.</li>
+<li><strong>Access or deletion on the relay:</strong> email us to ask what the relay holds about your device or board, or to delete a room record and everything kept with it. We may ask for the board ID or device ID (stored on your computer) to find it, because we cannot read board names.</li>
 </ul>
 <p>Depending on where you live, you may have rights to access, correct, delete or object to the use of your personal information, and to complain to a data-protection authority. Contact us and we will respond within a reasonable time.</p>
 
@@ -130,7 +136,7 @@ code{font-size:.92em}
 <p>TheJ is not directed at children under 13, and we do not knowingly collect personal information from them. If you believe a child has sent us personal information, contact us and we will delete it.</p>
 
 <h2>11. Changes to this policy</h2>
-<p>This policy describes TheJ 0.5. We will update it when features change, for example before adding accounts, paid features or new online services, and change the date above.</p>
+<p>This policy describes TheJ 0.5.8. We will update it when features change, for example before adding accounts, paid features or new online services, and change the date above.</p>
 
 <h2>12. Contact</h2>
 <p>Saanu John, India &middot; <a href="mailto:connetthej@gmail.com">connetthej@gmail.com</a></p>
